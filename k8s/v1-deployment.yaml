@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: fee-system
-        image: swetha1507-s/fee-system:v1
+        image: swetha1507/fee-system:v1
         ports:
         - containerPort: 3000
 
