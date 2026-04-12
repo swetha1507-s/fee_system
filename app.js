@@ -33,3 +33,33 @@ app.listen(3000,()=>{
  console.log("Version 1 running");
 
 });
+
+// Pending Fees Report
+app.get("/pendingFees",(req,res)=>{
+
+ let payments = JSON.parse(fs.readFileSync(FILE));
+
+ let pending = payments.filter(p => p.status == "pending");
+
+ res.json(pending);
+
+});
+
+// Fee Summary
+app.get("/summary",(req,res)=>{
+
+ let payments = JSON.parse(fs.readFileSync(FILE));
+
+ let total = payments.length;
+
+ let pending = payments.filter(p => p.status == "pending").length;
+
+ let paid = payments.filter(p => p.status == "paid").length;
+
+ res.json({
+  totalPayments: total,
+  paidFees: paid,
+  pendingFees: pending
+ });
+
+});
